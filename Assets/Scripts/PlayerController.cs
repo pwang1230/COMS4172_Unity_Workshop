@@ -1,15 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     
-
+    private Vector3 startPosition;
+    public Button restartButton;
+    public GameObject canvas;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        startPosition = this.transform.position;
+        Button buttonComponent = restartButton.GetComponent<Button>();
+        buttonComponent.onClick.AddListener(RestartGame);
+    }
+
+    void RestartGame()
+    {
+        this.transform.position = startPosition;
+        GameObject projectileGroup = GameObject.Find("ProjectileGroup");
+        for (int i = 0; i < projectileGroup.transform.childCount; i++){
+            Destroy(projectileGroup.transform.GetChild(i).gameObject);
+        }
+        for (int i = 0; i < projectileGroup.GetComponent<ProjectileGroupController>().numberOfProjectiles; i++){
+            projectileGroup.GetComponent<ProjectileGroupController>().CreateNewProjectile();
+        }
+        canvas.gameObject.SetActive(false);
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        this.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame

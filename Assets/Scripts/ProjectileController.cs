@@ -5,11 +5,13 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     private ProjectileGroupController groupControllerScript;
-    
+    public int maxCollidedCount;
+    private int collidedCount;
 
     // Start is called before the first frame update
     void Start()
     {
+        collidedCount = 0;
         groupControllerScript = GameObject.Find("ProjectileGroup").GetComponent<ProjectileGroupController>();
     }
 
@@ -21,7 +23,7 @@ public class ProjectileController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Plane"){
+        if (collision.gameObject.tag == "Ground" && collidedCount == maxCollidedCount){
             // Collided with plane, regenerate and destroy
             groupControllerScript.CreateNewProjectile();
             Destroy(this.gameObject);
@@ -31,10 +33,6 @@ public class ProjectileController : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Player").transform.localScale *= 0.8f; 
             }
         }
-     }
-
-     void OnCollisionEnd(Collision collision)
-     {
-
-     }
+        collidedCount += 1;
+    }
 }
