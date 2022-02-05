@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
             this.GetComponent<Rigidbody>().AddForce(new Vector3(-0.5f,0,0));
         }
         
+        /*
+         * Script for increase the scale of the player sphere
         // The minimum scale of the player is 0.1 and the maximum is 0.3
         Vector3 scale = this.transform.localScale;
         if (scale.x < 0.1f){
@@ -67,5 +69,6 @@ public class PlayerController : MonoBehaviour
             scale = new Vector3(scale_val,scale_val,scale_val);
         }
         this.transform.localScale = scale;
+        */
     }
 }

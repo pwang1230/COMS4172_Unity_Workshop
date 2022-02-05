@@ -29,8 +29,12 @@ public class ProjectileController : MonoBehaviour
             Destroy(this.gameObject);
         } else {
             if (collision.gameObject.name == "Player"){
-                // Collided with Player, make player smaller
-                GameObject.FindGameObjectWithTag("Player").transform.localScale *= 0.8f; 
+                // Collided with Player
+
+                Debug.Log("Player collided with projectile");
+
+                // Script for decreasing size of player upon collision
+                //GameObject.FindGameObjectWithTag("Player").transform.localScale *= 0.8f; 
             }
         }
         collidedCount += 1;
