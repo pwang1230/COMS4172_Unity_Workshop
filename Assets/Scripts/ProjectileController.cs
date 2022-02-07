@@ -32,7 +32,7 @@ public class ProjectileController : MonoBehaviour
                 // Collided with Player
 
                 Debug.Log("Player collided with projectile");
-
+                collision.gameObject.GetComponent<PlayerController>().Hit();
                 // Script for decreasing size of player upon collision
                 //GameObject.FindGameObjectWithTag("Player").transform.localScale *= 0.8f; 
             }

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
         startPosition = this.transform.position;
         Button buttonComponent = restartButton.GetComponent<Button>();
         buttonComponent.onClick.AddListener(RestartGame);
+        originalMat = GetComponent<MeshRenderer>().material;
     }
 
     void RestartGame()
@@ -70,5 +71,22 @@ public class PlayerController : MonoBehaviour
         }
         this.transform.localScale = scale;
         */
+    }
+
+    Coroutine coroutine;
+    public Material RedMat;
+    public Material originalMat;
+    public void Hit() {
+        if(coroutine!=null)
+            StopCoroutine(coroutine);
+
+        StartCoroutine(changeColorForSeconds(0.2f));
+    }
+
+    IEnumerator changeColorForSeconds(float seconds)
+    {
+        GetComponent<MeshRenderer>().material = RedMat;
+        yield return new WaitForSeconds(seconds);
+        GetComponent<MeshRenderer>().material = originalMat;
     }
 }

@@ -1151,6 +1151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 845336712}
   canvas: {fileID: 259492513}
+  RedMat: {fileID: 2100000, guid: 2b1c2423593cb42129ab7e3402c2ce16, type: 2}
+  originalMat: {fileID: 0}
 --- !u!1 &1804742957
 GameObject:
   m_ObjectHideFlags: 0
